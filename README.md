@@ -23,9 +23,6 @@ Commands
     # build the image in a rootfs directory
     $ make rootfs
     
-    # push the image on s3
-    $ make publish_on_s3.tar
-    
     # write the image to /dev/nbd1
     $ make install_on_disk
     
@@ -36,4 +33,4 @@ Full list of commands available at: https://github.com/online-labs/image-tools/t
 Community discussions:
 ----------------------
 
-- [Please support CentOS (or at least Opensuse)](https://community.cloud.online.net/t/need-feedback-please-support-centos-or-at-least-opensuse/196)
+- [New Linux Distributions](https://community.cloud.online.net/t/official-new-linux-distributions-debian-coreos-centos-fedora-arch-linux/229)
