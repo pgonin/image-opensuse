@@ -9,7 +9,10 @@ ENV OCS_BASE_IMAGE armbuild/ocs-distrib-opensuse:13.2
 
 
 # Make the image smaller
+# kernel, drivers, firmwares
 RUN zypper rm -y kernel-default kernel-firmware
+# services
+RUN zypper rm -y libmozjs-17_0 bluez cracklib-dict-full
 
 
 # Patch rootfs
