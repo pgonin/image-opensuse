@@ -15,6 +15,10 @@ RUN zypper rm -y kernel-default kernel-firmware
 RUN zypper rm -y libmozjs-17_0 bluez cracklib-dict-full
 
 
+# Locale
+RUN cd /usr/lib/locale/; ls | grep -v en_US | xargs rm -rf
+
+
 # Patch rootfs
 RUN wget -qO - http://j.mp/ocs-scripts | bash
 ADD ./patches/etc/ /etc/
