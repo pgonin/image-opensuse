@@ -8,6 +8,10 @@ MAINTAINER Online Labs <opensource@ocs.online.net>
 ENV OCS_BASE_IMAGE armbuild/ocs-distrib-opensuse:13.2
 
 
+# Make the image smaller
+RUN zypper rm -y kernel-default kernel-firmware
+
+
 # Patch rootfs
 RUN wget -qO - http://j.mp/ocs-scripts | bash
 ADD ./patches/etc/ /etc/
