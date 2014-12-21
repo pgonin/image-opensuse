@@ -1,7 +1,6 @@
-
 ## -*- docker-image-name: "armbuild/ocs-distrib-opensuse:13.2" -*-
 FROM armbuild/opensuse-disk:13.2
-MAINTAINER Online Labs <opensource@ocs.online.net>
+MAINTAINER Online Labs <opensource@ocs.online.net> (@online_en)
 
 
 # Environment
