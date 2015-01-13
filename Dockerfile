@@ -19,9 +19,11 @@ RUN cd /usr/lib/locale/; ls | grep -v en_US | xargs rm -rf
 
 
 # Patch rootfs
-RUN wget -qO - http://j.mp/ocs-scripts | bash
+RUN wget --no-check-certificate -qO - http://j.mp/ocs-scripts | bash
 ADD ./patches/etc/ /etc/
 #ADD ./patches/usr/ /usr/
+
+RUN systemctl enable oc-ssh-keys
 
 # TEMPORARY DEBUG ACCESS
 RUN echo root:toor2 | chpasswd
