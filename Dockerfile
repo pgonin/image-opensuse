@@ -15,7 +15,7 @@ RUN zypper rm -y libmozjs-17_0 bluez cracklib-dict-full
 
 
 # Install packages
-RUN zypper install -n \
+RUN zypper --non-interactive install \
     bc \
     curl \
     mg \
