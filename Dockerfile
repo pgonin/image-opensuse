@@ -15,10 +15,11 @@ RUN zypper rm -y libmozjs-17_0 bluez cracklib-dict-full
 
 
 # Install packages
-RUN zypper --non-interactive install \
+RUN zypper -v refresh \
+ && zypper --non-interactive update \
+ && zypper --non-interactive install \
     bc \
     curl \
-    mg \
     shunit2 \
     socat \
     sudo \
