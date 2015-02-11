@@ -14,6 +14,19 @@ RUN zypper rm -y kernel-default kernel-firmware
 RUN zypper rm -y libmozjs-17_0 bluez cracklib-dict-full
 
 
+# Install packages
+RUN zypper install -n \
+    bc \
+    curl \
+    mg \
+    shunit2 \
+    socat \
+    sudo \
+    tmux \
+    vim \
+    wget
+
+
 # Locale
 RUN cd /usr/lib/locale/; ls | grep -v en_US | xargs rm -rf
 
@@ -23,10 +36,13 @@ RUN wget --no-check-certificate -qO - http://j.mp/ocs-scripts | bash
 ADD ./patches/etc/ /etc/
 #ADD ./patches/usr/ /usr/
 
+
 RUN systemctl enable oc-ssh-keys
+
 
 # Remove root password
 RUN passwd -d root
+
 
 # TEMPORARY DEBUG ACCESS
 RUN echo root:toor2 | chpasswd
