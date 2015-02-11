@@ -1,5 +1,5 @@
-Official Opensuse image on Online Labs
-====================================
+Official Opensuse image on Online Labs [![Build Status](https://travis-ci.org/online-labs/image-opensuse.svg?branch=master)](https://travis-ci.org/online-labs/image-opensuse)
+======================================
 
 **Warning: this is image is not yet working**
 
