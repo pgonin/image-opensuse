@@ -7,6 +7,8 @@ Scripts to build the official Opensuse image on Online Labs
 
 This image is built using [Image Tools](https://github.com/online-labs/image-tools) and depends on the [armbuild/opensuse-disk](https://registry.hub.docker.com/u/armbuild/opensuse-disk/) Docker image.
 
+<img src="http://upload.wikimedia.org/wikipedia/en/9/98/OpenSUSE_official-logo-color.svg" width="300px" />
+
 ---
 
 **This image is meant to be used on a C1 server.**
@@ -32,3 +34,7 @@ Community discussions:
 ----------------------
 
 - [New Linux Distributions](https://community.cloud.online.net/t/official-new-linux-distributions-debian-coreos-centos-fedora-arch-linux/229)
+
+---
+
+A project by [![Online Labs](https://raw.githubusercontent.com/online-labs/doc.cloud.online.net/master/www/documentation/docs_public/contents/images/logo_footer.png)](http://labs.online.net/)
