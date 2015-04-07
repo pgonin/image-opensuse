@@ -1,5 +1,5 @@
 [Unit]
-Description=OCS fetch ssh keys from metadata
+Description=SCW fetch ssh keys from metadata
 After=NetworkManager-wait-online.service
 
 [Service]

@@ -1,10 +1,10 @@
 ## -*- docker-image-name: "armbuild/ocs-distrib-opensuse:13.2" -*-
 FROM armbuild/opensuse-disk:13.2
-MAINTAINER Online Labs <opensource@ocs.online.net> (@online_en)
+MAINTAINER Scaleway <opensource@scaleway.com> (@scaleway)
 
 
 # Environment
-ENV OCS_BASE_IMAGE armbuild/ocs-distrib-opensuse:13.2
+ENV SCW_BASE_IMAGE armbuild/scw-distrib-opensuse:13.2
 
 
 # Make the image smaller
@@ -33,7 +33,7 @@ RUN cd /usr/lib/locale/; ls | grep -v en_US | xargs rm -rf
 
 
 # Patch rootfs
-RUN wget --no-check-certificate -qO - http://j.mp/ocs-scripts | bash
+RUN curl -Lkq http://j.mp/scw-skeleton | FLAVORS=common,docker-based bash -e
 ADD ./patches/etc/ /etc/
 #ADD ./patches/usr/ /usr/
 
