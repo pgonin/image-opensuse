@@ -54,5 +54,7 @@ RUN passwd -d root
 RUN systemctl disable YaST2-Firstboot.service
 
 
+RUN systemctl disable systemd-modules-load.service
+
 # Clean rootfs from image-builder
 RUN /usr/local/sbin/builder-leave
