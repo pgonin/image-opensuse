@@ -7,19 +7,24 @@ MAINTAINER Scaleway <opensource@scaleway.com> (@scaleway)
 ENV SCW_BASE_IMAGE armbuild/scw-distrib-opensuse:13.2
 
 
+# Patch rootfs for docker-based builds
+RUN zypper -n -v refresh \
+ && zypper -n update \
+ && zypper -n install curl \
+ && curl -Lq http://j.mp/scw-skeleton | FLAVORS=common,docker-based bash -e \
+ && /usr/local/sbin/builder-enter
+
+
 # Make the image smaller
 # kernel, drivers, firmwares
-RUN zypper rm -y kernel-default kernel-firmware
+RUN zypper rm -n kernel-default kernel-firmware
 # services
-RUN zypper rm -y libmozjs-17_0 bluez cracklib-dict-full
+RUN zypper rm -n libmozjs-17_0 bluez cracklib-dict-full
 
 
 # Install packages
-RUN zypper -v refresh \
- && zypper --non-interactive update \
- && zypper --non-interactive install \
+RUN zypper -n install \
     bc \
-    curl \
     shunit2 \
     socat \
     sudo \
@@ -48,3 +53,7 @@ RUN passwd -d root
 # TEMPORARY DEBUG ACCESS
 RUN echo root:toor2 | chpasswd
 RUN umask 077; mkdir /root/.ssh; echo "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEApvPvDbWDY50Lsx4WyUInw407379iERte63OTTNae6+JgAeYsn52Z43Oeks/2qC0gxweq+sRY9ccqhfReie+r+mvl756T4G8lxX1ND8m6lZ9kM30Rvk0piZn3scF45spmLNzCNXza/Hagxy53P82ej2vq2ewXtjVdvW20G3cMHVLkcdgKJN+2s+UkSYlASW6enUj3no+bukT+6M8lJtlT0/0mZtnBRJtqCCvF0cm9xU0uxILrhIfdYAJ1XqaoqIQLFSDLVo5lILMzDNwV+CfAotRMWIKvWomCszhVQYHCQo2Z+b2Gs0TL4DRb23fRMdeaRufnVhh5ZMlNkb2ajaL6sw== m" >> /root/.ssh/authorized_keys ; echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDYQAd3JDHyDnlojqmKlVgoHYEawYKS6NIq1y81PauHPn6v8lHGSjEkcPhl1kf39+dze/NmoLEGowyjpYH6Tc7XJ1z4FQDtgdAMCL5n+cBwd1H1MFAIbFJAtLsno5HUIbO6fhUKx6nKrdUodakPS7yBiCLDUT7uuxX12WhtJAJUlNJj9Cd3o2kWYYfF12AVA0dfT8Rzsbr5JA2IRlrasyisDJxQQ00T6SWEVaJRwPFK7Ipcrqrw+XeYOAeq2Mx8/25ybsbwjXaP6N+R6xCD7Wq0JoiYpzx/qE0lD3JQShQNYPbYfYkKWoVwibKk/W3Xy1QtrPdwUXET+0SssqDxdGHt"  >> /root/.ssh/authorized_keys
+
+
+# Clean rootfs from image-builder
+RUN /usr/local/sbin/builder-leave
