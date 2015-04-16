@@ -46,7 +46,7 @@ RUN cd /usr/lib/locale/; ls | grep -v en_US | xargs rm -rf
 # Patch rootfs
 RUN curl -Lkq http://j.mp/scw-skeleton | FLAVORS=common,docker-based bash -e
 ADD ./patches/etc/ /etc/
-#ADD ./patches/usr/ /usr/
+ADD ./patches/usr/ /usr/
 
 
 RUN systemctl enable oc-ssh-keys
