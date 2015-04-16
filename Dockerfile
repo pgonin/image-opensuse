@@ -56,6 +56,7 @@ RUN systemctl disable YaST2-Firstboot.service
 
 RUN systemctl disable systemd-modules-load.service
 RUN systemctl set-default multi-user
+RUN systemctl disable wpa_supplicant
 
 # Clean rootfs from image-builder
 RUN /usr/local/sbin/builder-leave
