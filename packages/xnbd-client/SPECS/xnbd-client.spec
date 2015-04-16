@@ -15,7 +15,7 @@ Network Block Device client with support for live migration.
 %prep
 %autosetup -n xnbd-0.3.0
 %build
-%configure
+./configure --prefix=/usr/local
 make %{?_smp_mflags}
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -23,12 +23,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %define _unpackaged_files_terminate_build 0 
 %files
-%{_libdir}/libxnbd_internal.la
-%{_libdir}/libxnbd_internal.so
-%{_libdir}/libxnbd_internal.so.0
-%{_libdir}/libxnbd_internal.so.0.0.0
-%{_sbindir}/xnbd-client
-%{_mandir}/man1/xnbd-client.1.gz
+/usr/local/lib/libxnbd_internal.la
+/usr/local/lib/libxnbd_internal.so
+/usr/local/lib/libxnbd_internal.so.0
+/usr/local/lib/libxnbd_internal.so.0.0.0
+/usr/local/sbin/xnbd-client
 %doc
 
 
