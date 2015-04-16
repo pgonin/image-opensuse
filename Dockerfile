@@ -60,7 +60,8 @@ RUN passwd -d root
 RUN systemctl disable YaST2-Firstboot.service
 
 
-RUN systemctl disable systemd-modules-load.service
+RUN systemctl disable systemd-modules-load.service \
+ && systemctl disable dev-ttyS0.device
 RUN systemctl set-default multi-user
 RUN systemctl disable wpa_supplicant
 RUN systemctl disable alsa-restore.service alsa-state.service alsa-store.service alsasound.service
