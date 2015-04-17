@@ -1,0 +1,15 @@
+#!/bin/sh
+# Thanks to the LTSP project
+# If the root /dev/nbd0 device is unmounted on reboot then nbd read
+# errors occur, and if it isn't, then # the nbd-server process on the server
+# doesn't terminate.
+# Called by init scripts on reboot.
+
+NBD_CLIENT=/usr/local/sbin/xnbd-client
+
+disconnect() {
+    $NBD_CLIENT -d "/dev/nbd0"
+    echo b > /proc/sysrq-trigger
+}
+
+disconnect

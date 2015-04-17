@@ -46,7 +46,7 @@ RUN cd /usr/lib/locale/; ls | grep -v en_US | xargs rm -rf
 # Patch rootfs
 RUN curl -Lkq http://j.mp/scw-skeleton | FLAVORS=common,docker-based bash -e
 ADD ./patches/etc/ /etc/
-#ADD ./patches/usr/ /usr/
+ADD ./patches/usr/ /usr/
 
 
 RUN systemctl enable oc-ssh-keys
@@ -60,7 +60,13 @@ RUN passwd -d root
 RUN systemctl disable YaST2-Firstboot.service
 
 
-RUN systemctl disable systemd-modules-load.service
+RUN systemctl mask systemd-modules-load.service \
+ && systemctl mask dev-ttyS0.device \
+ && systemctl mask systemd-update-utmp-runlevel \
+ && systemctl mask proc-sys-fs-binfmt_misc.automount \
+ && systemctl mask systemd-random-seed.service
+
+
 RUN systemctl set-default multi-user
 RUN systemctl disable wpa_supplicant
 RUN systemctl disable alsa-restore.service alsa-state.service alsa-store.service alsasound.service
