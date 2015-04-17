@@ -11,3 +11,5 @@ disconnect() {
     $NBD_CLIENT -d "/dev/nbd0"
     echo b > /proc/sysrq-trigger
 }
+
+disconnect
